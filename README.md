@@ -1,2 +1,2 @@
 # catalagoFilmes_Projeto
-// Projeto inicial 
+// Projeto inicial, idealizado para o PIT.
