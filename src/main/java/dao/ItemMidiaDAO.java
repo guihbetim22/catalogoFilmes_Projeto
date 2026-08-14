@@ -13,7 +13,7 @@ import model.ItemMidia;
 public class ItemMidiaDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
     private final String user = "java_user";
-    private final String password = "Filmes@2002"; // Deixe vazio ou coloque sua senha
+    private final String password = "senha_aqui"; // Deixe vazio ou coloque sua senha
 
     private Connection conectar() throws SQLException {
         try {

@@ -14,7 +14,7 @@ import model.ItemMidia;
 public class InteracaoDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
     private final String user = "java_user";
-    private final String password = "Filmes@2002"; // Coloque a senha do banco aqui!
+    private final String password = "senha_aqui"; // Coloque a senha do banco aqui!
 
     private Connection conectar() throws SQLException {
         try {

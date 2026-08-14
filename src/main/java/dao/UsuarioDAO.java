@@ -11,7 +11,7 @@ import model.Usuario;
 public class UsuarioDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
     private final String user = "java_user";
-    private final String password = "Filmes@2002"; // Lembre-se de colocar sua senha aqui!
+    private final String password = "senha_aqui"; // Lembre-se de colocar sua senha aqui!
 
     private Connection conectar() throws SQLException {
         try {
