@@ -8,6 +8,11 @@
 
 <br>
 
+# 📽️ Projeto Integrador: Sistema de Filmes Java
+
+
+Idealizado por: Guilherme Betim (BetterSon).
+
 # 🎬 Catálogo de Filmes
 
 Um sistema web completo para gerenciamento de catálogo de filmes, avaliações da comunidade e listas pessoais, desenvolvido com Java e arquitetura MVC.
@@ -32,11 +37,14 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 3. Localize o script de criação do banco na pasta do projeto:
    `database/catalogo_filmes.sql`
 4. Execute o script no seu MySQL. Ele criará automaticamente o banco de dados `catalogo_filmes`, todas as tabelas (usuários, mídias, avaliações, listas) e a estrutura necessária.
+5. Após upar o repositório na IDE, navegue até as classes de DAO. Atualize as credenciais de conexão do banco de dados com o seu usuário e senha local do MySQL:
+   **login: private final String user = "seu_usuario_mysql";**
+   **senha: private final String password = "sua_senha_mysql";**
 
 ## 🔐 Configuração do Projeto
 1. Clone este repositório para a sua máquina:
    ```bash
-   git clone [https://github.com/guihbetim22/catalagoFilmes_Projeto.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+   git clone (https://github.com/guihbetim22/catalagoFilmes_Projeto.git)
 
 ## 💻 Como Executar o Projeto na IDE
 
