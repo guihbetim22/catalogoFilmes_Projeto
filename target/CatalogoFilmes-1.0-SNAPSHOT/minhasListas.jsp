@@ -7,6 +7,7 @@
     <title>Minhas Listas</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
     <style>
+        .btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; }
         /* ======================================================= */
         /* ESTILOS BASE (MODO CLARO)                               */
         /* ======================================================= */
@@ -54,7 +55,8 @@
     <jsp:include page="navbar.jsp" />
 
     <div class="container">
-        <a href="filmes" style="color: #3498db; text-decoration: none; font-weight: bold;">⬅ Voltar ao Catálogo Principal</a>
+        <a href="filmes" class="btn-gray">⬅ Voltar ao Catálogo</a>
+
         <h2 style="color: #2c3e50; margin-top: 20px;">🎬 Minhas Listas Pessoais</h2>
         
         <!-- Menus de navegação das listas -->

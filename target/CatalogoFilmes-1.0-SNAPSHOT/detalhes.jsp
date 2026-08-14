@@ -14,7 +14,7 @@
         .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; text-decoration: none; }
         .btn-blue { background-color: #3498db; }
         .btn-green { background-color: #27ae60; }
-        .btn-gray { background-color: #7f8c8d; margin-bottom: 20px; display: inline-block; }
+        .btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; }
         .comentario-box { border-bottom: 1px solid #eee; padding: 15px 0; }
         .estrelas { color: #f39c12; font-size: 18px; font-weight: bold; }
         .tag-tipo { background-color: #e74c3c; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; }
@@ -25,7 +25,7 @@
     <jsp:include page="navbar.jsp" />
     
     <div class="container">
-        <a href="filmes" class="btn btn-gray">⬅ Voltar ao Catálogo</a>
+        <a href="filmes" class="btn-gray">⬅ Voltar ao Catálogo</a>
         
         <div>
             <c:if test="${not empty filme.posterUrl}">
