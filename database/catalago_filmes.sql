@@ -44,7 +44,6 @@ CREATE TABLE `avaliacoes` (
 
 LOCK TABLES `avaliacoes` WRITE;
 /*!40000 ALTER TABLE `avaliacoes` DISABLE KEYS */;
-INSERT INTO `avaliacoes` VALUES (29,6,68,5,'muito bom!','2026-08-14 18:14:47');
 /*!40000 ALTER TABLE `avaliacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +104,6 @@ CREATE TABLE `listas_pessoais` (
 
 LOCK TABLES `listas_pessoais` WRITE;
 /*!40000 ALTER TABLE `listas_pessoais` DISABLE KEYS */;
-INSERT INTO `listas_pessoais` VALUES (34,6,67,'QUERO_ASSISTIR'),(35,6,68,'JA_ASSISTI');
 /*!40000 ALTER TABLE `listas_pessoais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +122,7 @@ CREATE TABLE `usuarios` (
   `perfil` varchar(20) DEFAULT 'COMUM',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +131,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (5,'Admin','admin@teste.com','123456','ADMIN'),(6,'teste','teste@teste.com','123','COMUM');
+INSERT INTO `usuarios` VALUES (12,'adm','admin@teste.com','$2a$10$uiZ9GmllQpyeMAaqUByn1.bnboFKODPttcZMU.0Y2p4Uvzq1Q2Ypq','COMUM'),(13,'teste','teste@teste.com','$2a$10$dzQL52eSg9kE3bNG41Nj.uNDExGfXcLMDL5W2n4P/FhW2EAX.Xyyy','COMUM');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -146,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-14 15:18:20
+-- Dump completed on 2026-08-14 17:19:08

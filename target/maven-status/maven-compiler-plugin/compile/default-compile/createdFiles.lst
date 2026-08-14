@@ -7,5 +7,6 @@ controller/DetalhesServlet.class
 dao/ItemMidiaDAO.class
 model/Avaliacao.class
 controller/UsuarioServlet.class
+filter/FiltroAutenticacao.class
 controller/AdminUsuariosServlet.class
 dao/UsuarioDAO.class

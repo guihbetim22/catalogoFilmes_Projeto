@@ -3,6 +3,14 @@
 
 <div class="navbar">
     <h2>🎬 Catálogo de Filmes</h2>
+    
+    <!-- === NOVA BARRA DE PESQUISA === -->
+    <form action="filmes" method="get" class="search-form">
+        <input type="text" name="busca" placeholder="Buscar filmes por título..." class="search-input" value="${param.busca}">
+        <button type="submit" class="search-btn">🔍</button>
+    </form>
+    <!-- ============================== -->
+
     <div class="nav-links">
         <c:choose>
             <c:when test="${not empty usuarioLogado}">
@@ -10,9 +18,8 @@
                 
                 <c:if test="${usuarioLogado.perfil eq 'ADMIN'}">
                     <a href="admin-usuarios" style="text-decoration: none; font-weight: bold; margin-right: 15px;">⚙️ Usuários</a>
-                
                 </c:if>
-                <!-- O botão só aparece se a variável NÃO for true -->
+
                 <c:if test="${ocultarBotaoLista ne 'true'}">
                     <a href="minhas-listas" class="btn-listas">Minhas Listas</a>
                 </c:if>
@@ -33,13 +40,11 @@
     const btnTheme = document.getElementById('btn-theme');
     const body = document.body;
 
-    // Quando a página carrega, aplica o tema salvo
     if (localStorage.getItem('tema') === 'dark') {
         body.classList.add('dark-mode');
         if(btnTheme) btnTheme.textContent = '☀️';
     }
 
-    // Quando clica no botão
     if(btnTheme) {
         btnTheme.addEventListener('click', () => {
             body.classList.toggle('dark-mode');

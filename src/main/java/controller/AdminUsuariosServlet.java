@@ -23,15 +23,8 @@ public class AdminUsuariosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Usuario admin = (Usuario) session.getAttribute("usuarioLogado");
-
-        // Bloqueia o acesso se não estiver logado ou não for ADMIN
-        if (admin == null || !"ADMIN".equals(admin.getPerfil())) {
-            response.sendRedirect("filmes"); 
-            return;
-        }
-
+        // NÃO PRECISA MAIS CHECAR SE É NULL OU ADMIN AQUI! O Filtro já garantiu isso.
+        
         List<Usuario> usuarios = usuarioDAO.listarTodosUsuarios();
         request.setAttribute("usuarios", usuarios);
         request.getRequestDispatcher("adminUsuarios.jsp").forward(request, response);
@@ -42,17 +35,15 @@ public class AdminUsuariosServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario admin = (Usuario) session.getAttribute("usuarioLogado");
 
-        // Trava dupla de segurança: Confirma no POST se é o ADMIN
-        if (admin != null && "ADMIN".equals(admin.getPerfil())) {
-            String acao = request.getParameter("acao");
+        // A checagem de null e de perfil ADMIN já foi garantida pelo FiltroAutenticacao!
+        String acao = request.getParameter("acao");
+        
+        if ("excluir".equals(acao)) {
+            int idExcluir = Integer.parseInt(request.getParameter("idUsuario"));
             
-            if ("excluir".equals(acao)) {
-                int idExcluir = Integer.parseInt(request.getParameter("idUsuario"));
-                
-                // Impede que o Admin exclua a própria conta
-                if (idExcluir != admin.getId()) {
-                    usuarioDAO.excluirUsuario(idExcluir);
-                }
+            // Impede que o Admin exclua a própria conta
+            if (idExcluir != admin.getId()) {
+                usuarioDAO.excluirUsuario(idExcluir);
             }
         }
         

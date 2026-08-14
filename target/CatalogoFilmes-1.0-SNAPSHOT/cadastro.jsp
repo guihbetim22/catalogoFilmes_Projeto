@@ -1,37 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    
-    <div style="background: #e8f4f8; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-        <h3>Busca Rápida e Automática (TMDB)</h3>
-        <form action="filmes?acao=buscarTmdb" method="post">
-            <input type="text" name="nomeFilme" placeholder="Digite o nome do filme..." required style="width: 70%; padding: 8px;">
-            <button type="submit" style="background-color: #f39c12;">Importar do TMDB</button>
+    <title>Cadastrar Mídia</title>
+    <!-- Link para o CSS centralizado -->
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
+</head>
+<body class="container-cadastro">
+
+    <div style="background: #e8f4f8; padding: 15px; border-radius: 5px; margin-bottom: 20px; max-width: 500px;">
+        <h3 style="margin-top: 0;">Busca Rápida e Automática (TMDB)</h3>
+        <form action="filmes?acao=buscarTmdb" method="post" style="padding: 0; border: none; margin: 0; box-shadow: none;">
+            <input type="text" name="nomeFilme" placeholder="Digite o nome do filme..." required style="width: 60%; padding: 8px;">
+            <button type="submit" style="background-color: #f39c12; width: auto; padding: 10px;">Importar do TMDB</button>
         </form>
     </div>
     
-    <hr>
+    <hr style="max-width: 500px; margin-left: 0;">
     <h3>Ou cadastre manualmente:</h3>
 
-    <!-- O seu formulário manual antigo continua aqui embaixo -->
-
-
-    <title>Cadastrar Mídia</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #fdfbf7; color: #333; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        form { background: #fff; padding: 20px; border-radius: 5px; border: 1px solid #ddd; max-width: 500px; margin-bottom: 20px; }
-        label { font-weight: bold; }
-        input[type="text"], input[type="number"], textarea { width: 100%; padding: 8px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #27ae60; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background-color: #2ecc71; }
-        a { text-decoration: none; color: #3498db; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
     <h1>Cadastrar Novo Filme ou Série</h1>
     <form action="filmes" method="post">
         <label>Título:</label>
@@ -60,6 +49,8 @@
         
         <button type="submit">Salvar no Catálogo</button>
     </form>
-    <a href="filmes">&larr; Voltar para a Lista</a>
+    
+    <a href="filmes" class="btn-gray">&larr; Voltar para a Lista</a>
+
 </body>
 </html>

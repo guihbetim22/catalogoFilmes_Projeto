@@ -25,12 +25,10 @@ public class MinhaListaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         
-        if (usuario == null) {
-            response.sendRedirect("login.jsp?erro=Acesso restrito.");
-            return;
-        }
+        // Só puxamos o usuário da sessão porque precisamos do ID dele. 
+        // O Filtro já garantiu que ele JAMAIS será nulo aqui dentro!
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 
         String acao = request.getParameter("acao");
         String status = request.getParameter("status");

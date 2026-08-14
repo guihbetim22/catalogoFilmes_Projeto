@@ -7,13 +7,6 @@
     <meta charset="UTF-8">
     <title>Gerenciar Usuários</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #fdfbf7; padding: 20px; }
-        .container { background: #fff; padding: 30px; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .user-box { border-bottom: 1px solid #eee; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
-        .btn-red { background-color: #e74c3c; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .tag-admin { background-color: #f39c12; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 10px; }
-        /* === Estilo do botão de voltar adicionado === */
-        .btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; }
     </style>
 </head>
 <body>

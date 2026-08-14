@@ -28,9 +28,7 @@ public class DetalhesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // === BLOQUEIO REMOVIDO ===
-        // Agora, qualquer visitante pode acessar a página de detalhes para ver o filme e os comentários!
-
+        // GET é público: Qualquer visitante pode acessar e ler a página!
         int idMidia = Integer.parseInt(request.getParameter("id"));
         
         ItemMidia filme = midiaDAO.buscarPorId(idMidia); 
@@ -38,26 +36,19 @@ public class DetalhesServlet extends HttpServlet {
         double media = interacaoDAO.obterMediaEstrelas(idMidia);
 
         request.setAttribute("filme", filme);
-        
-        // Ajustado para "avaliacoes" para combinar com o HTML do detalhes.jsp
         request.setAttribute("avaliacoes", avaliacoes); 
-        request.setAttribute("media", String.format("%.1f", media)); // Formata para 1 casa decimal
+        request.setAttribute("media", String.format("%.1f", media));
 
         request.getRequestDispatcher("detalhes.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // === BLOQUEIO MANTIDO ===
-        // A segurança continua ativa aqui! Só quem está logado pode enviar comentários ou adicionar à lista.
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         
-        if (usuario == null) {
-            String mensagem = java.net.URLEncoder.encode("Faça o login para interagir com o catálogo.", "UTF-8");
-            response.sendRedirect("login.jsp?erro=" + mensagem);
-            return;
-        }
+        // === SEGURANÇA CENTRALIZADA ===
+        // O FiltroAutenticacao já validou que é um POST e garantiu que o usuario NÃO É NULL aqui!
 
         String acao = request.getParameter("acao");
         int idMidia = Integer.parseInt(request.getParameter("idMidia"));
@@ -73,8 +64,7 @@ public class DetalhesServlet extends HttpServlet {
                 interacaoDAO.adicionarALista(usuario.getId(), idMidia, status);
             }
             case "excluirComentario" -> {
-                // === NOVO: Trava de segurança dupla para exclusão ===
-                // Confirma no back-end se quem mandou a requisição realmente é o ADMIN
+                // A trava dupla continua APENAS para essa ação, confirmando se o logado é ADMIN
                 if ("ADMIN".equals(usuario.getPerfil())) {
                     int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
                     interacaoDAO.excluirAvaliacao(idAvaliacao);

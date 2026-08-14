@@ -7,17 +7,6 @@
     <meta charset="UTF-8">
     <title>Detalhes do Filme</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #fdfbf7; padding: 20px; }
-        .container { background: #fff; padding: 30px; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .poster { max-width: 250px; border-radius: 8px; float: left; margin-right: 25px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
-        .clear { clear: both; }
-        .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; text-decoration: none; }
-        .btn-blue { background-color: #3498db; }
-        .btn-green { background-color: #27ae60; }
-        .btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; }
-        .comentario-box { border-bottom: 1px solid #eee; padding: 15px 0; }
-        .estrelas { color: #f39c12; font-size: 18px; font-weight: bold; }
-        .tag-tipo { background-color: #e74c3c; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; }
     </style>
 </head>
 <body>

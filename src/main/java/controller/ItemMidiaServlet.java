@@ -11,9 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import model.ItemMidia;
-import model.Usuario;
 
 @WebServlet("/filmes")
 public class ItemMidiaServlet extends HttpServlet {
@@ -26,57 +24,57 @@ public class ItemMidiaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String acao = request.getParameter("acao"); 
+        String busca = request.getParameter("busca"); 
         
-        String acao = request.getParameter("acao"); // Sem a chave { extra aqui!
-        HttpSession session = request.getSession();
-        Usuario user = (Usuario) session.getAttribute("usuarioLogado");
-
+        // Captura os parâmetros dos novos botões de filtro
+        String filtro = request.getParameter("filtro"); 
+        String valorFiltro = request.getParameter("valor"); 
+        
         if ("excluir".equals(acao)) {
-            // Bloqueia se não estiver logado OU se não for ADMIN
-            if (user == null || !"ADMIN".equals(user.getPerfil())) {
-                response.sendRedirect("index.jsp?erro=Acesso Negado! Permissão de Administrador necessária.");
-                return;
-            }
-            
             int id = Integer.parseInt(request.getParameter("id"));
             dao.excluir(id);
             response.sendRedirect("filmes");
             return;
         }
 
-        // Listagem padrão
-        List<ItemMidia> listaFilmes = dao.listarTodos();
+        List<ItemMidia> listaFilmes;
+        
+        // Prioridade 1: Barra de Pesquisa
+        if (busca != null && !busca.trim().isEmpty()) {
+            listaFilmes = dao.buscarPorTitulo(busca);
+        } 
+        // Prioridade 2: Botões de Filtro
+        else if (filtro != null && valorFiltro != null && !valorFiltro.trim().isEmpty()) {
+            listaFilmes = dao.buscarPorFiltro(filtro, valorFiltro);
+        } 
+        // Padrão: Catálogo Completo
+        else {
+            listaFilmes = dao.listarTodos();
+        }
+
+        // Enviamos o valor do filtro de volta para a tela para pintar o botão selecionado
+        request.setAttribute("filtroAtual", filtro);
+        request.setAttribute("valorFiltroAtual", valorFiltro);
+        
         request.setAttribute("listaFilmes", listaFilmes);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
     
-
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // === VERIFICAÇÃO DE SEGURANÇA (SESSÃO) ===
-    HttpSession session = request.getSession();
-    Usuario user = (Usuario) session.getAttribute("usuarioLogado");
-    
-    if (user == null) {
-        response.sendRedirect("login.jsp?erro=Faca login primeiro.");
-        return;
-    }
+        // === SEGURANÇA GARANTIDA PELO FILTRO ===
+        // O FiltroAutenticacao já bloqueou qualquer usuário que não seja ADMIN de chegar neste POST.
 
-    // BLINDAGEM: Se tentar enviar um formulário de cadastro sem ser ADMIN, é bloqueado na hora.
-    if (!"ADMIN".equals(user.getPerfil())) {
-        response.sendRedirect("index.jsp?erro=Operação não permitida.");
-        return;
-    }
-
+        String acao = request.getParameter("acao");
+        
         // =======================================================
         // CENÁRIO 1: BUSCA AUTOMÁTICA PELA API DO TMDB
         // =======================================================
-        String acao = request.getParameter("acao");
         if ("buscarTmdb".equals(acao)) {
             String nomeBusca = request.getParameter("nomeFilme");
             try {
-                // COLE SEU TOKEN JWT AQUI DENTRO:
                 String jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ODgwMGYwNmY3MDJiZDIxNzU0MWIzZDNmMjA3YTJmZiIsIm5iZiI6MTc4NjQ3OTEwMC44NTY5OTk5LCJzdWIiOiI2YTdiODFmYzVlOTU1MDY2OTNmOGYwZTgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.VaVgAVBEqwppc04yjGUO-IRzKs92LCLi1XQvBkDHIl0"; 
                 String query = java.net.URLEncoder.encode(nomeBusca, java.nio.charset.StandardCharsets.UTF_8);
                 
@@ -118,7 +116,6 @@ public class ItemMidiaServlet extends HttpServlet {
                     }
                     item.setTipoMidia("Filme");
 
-                    // -> CAPTURANDO A DURAÇÃO DO TMDB AQUI <-
                     int duracaoTmdb = 0;
                     if (filmeDetalhes.has("runtime") && !filmeDetalhes.get("runtime").isJsonNull()) {
                         duracaoTmdb = filmeDetalhes.get("runtime").getAsInt();
@@ -144,7 +141,7 @@ public class ItemMidiaServlet extends HttpServlet {
                     }
                     item.setAutorDiretor(diretor);
 
-                    dao.inserir(item); // Salva no banco DEPOIS de todos os "set"
+                    dao.inserir(item); 
                 }
             } catch (JsonSyntaxException | IOException | InterruptedException | NumberFormatException e) {
                 e.printStackTrace();
@@ -165,7 +162,6 @@ public class ItemMidiaServlet extends HttpServlet {
             ano = Integer.parseInt(paramAno);
         }
         
-        // -> CAPTURANDO A DURAÇÃO DO FORMULÁRIO MANUAL AQUI <-
         int duracaoManual = 0;
         String paramDuracao = request.getParameter("duracao");
         if (paramDuracao != null && !paramDuracao.isEmpty()) {
@@ -181,15 +177,14 @@ public class ItemMidiaServlet extends HttpServlet {
         item.setTitulo(titulo);
         item.setAutorDiretor(autorDiretor);
         item.setAnoLancamento(ano);
-        item.setDuracao(duracaoManual); // Passa a duração manual para o objeto
+        item.setDuracao(duracaoManual); 
         item.setGenero(genero);
         item.setSinopse(sinopse);
         item.setTipoMidia(tipo);
         item.setPosterUrl(posterUrl != null && !posterUrl.isEmpty() ? posterUrl : null); 
 
-        dao.inserir(item); // Salva no banco DEPOIS de todos os "set"
+        dao.inserir(item); 
         
         response.sendRedirect("filmes");
-    
     }
 }

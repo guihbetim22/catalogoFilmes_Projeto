@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import model.Usuario;
 
 public class UsuarioDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
-    private final String user = "login_mysql"; // Coloque o usuário do banco aqui!
-    private final String password = "senha_mysql"; // Coloque a senha do banco aqui!
+    private final String user = "java_user"; // Coloque o usuário do banco aqui!
+    private final String password = "Filmes@2002"; // Coloque a senha do banco aqui!
 
     private Connection conectar() throws SQLException {
         try {
@@ -27,9 +29,13 @@ public class UsuarioDAO {
     public boolean cadastrar(Usuario u) {
         String sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
         try (Connection conn = conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            // 🔒 CRIPTOGRAFANDO A SENHA AQUI ANTES DE SALVAR NO BANCO
+            String senhaCriptografada = BCrypt.hashpw(u.getSenha(), BCrypt.gensalt());
+            
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getEmail());
-            stmt.setString(3, u.getSenha()); // Em projetos comerciais, a senha receberia um Hash aqui
+            stmt.setString(3, senhaCriptografada); // Enviamos o Hash ao invés do texto puro
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -39,25 +45,31 @@ public class UsuarioDAO {
     }
 
     public Usuario autenticar(String email, String senha) {
-        String sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+        // Agora buscamos apenas pelo email!
+        String sql = "SELECT * FROM usuarios WHERE email = ?";
         try (Connection conn = conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
-            stmt.setString(2, senha);
+            
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Usuario u = new Usuario();
-                    u.setId(rs.getInt("id"));
-                    u.setNome(rs.getString("nome"));
-                    u.setEmail(rs.getString("email"));
-                    u.setSenha(rs.getString("senha"));
-                    u.setPerfil(rs.getString("perfil"));
-                    return u;
+                    String senhaBanco = rs.getString("senha"); // Pega o Hash do banco
+                    
+                    // 🔒 O BCrypt verifica se a senha digitada bate com o Hash criptografado
+                    if (BCrypt.checkpw(senha, senhaBanco)) {
+                        Usuario u = new Usuario();
+                        u.setId(rs.getInt("id"));
+                        u.setNome(rs.getString("nome"));
+                        u.setEmail(rs.getString("email"));
+                        // Não precisamos mais carregar a senha para a memória, é mais seguro!
+                        u.setPerfil(rs.getString("perfil"));
+                        return u;
+                    }
                 }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao autenticar: " + e.getMessage());
         }
-        return null; // Retorna nulo se o usuário não for encontrado
+        return null; // Retorna nulo se o usuário não for encontrado ou a senha estiver incorreta
     }
 
     // ==========================================
