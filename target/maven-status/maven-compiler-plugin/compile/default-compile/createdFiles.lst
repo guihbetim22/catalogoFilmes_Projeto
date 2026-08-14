@@ -1,0 +1,10 @@
+model/ItemMidia.class
+dao/InteracaoDAO.class
+model/Usuario.class
+controller/ItemMidiaServlet.class
+controller/MinhaListaServlet.class
+controller/DetalhesServlet.class
+dao/ItemMidiaDAO.class
+model/Avaliacao.class
+controller/UsuarioServlet.class
+dao/UsuarioDAO.class

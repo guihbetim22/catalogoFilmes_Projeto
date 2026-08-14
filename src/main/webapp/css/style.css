@@ -1,0 +1,183 @@
+body { font-family: Arial, sans-serif; background-color: #fdfbf7; padding: 20px; margin: 0; }
+        
+/* Barra Superior */
+.navbar { background-color: #34495e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-radius: 5px; margin-bottom: 20px; }
+.navbar h2 { margin: 0; display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; align-items: center; }
+.nav-links a { text-decoration: none; color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; margin-left: 10px; }
+.btn-listas { background-color: #27ae60; }
+.btn-sair { background-color: #e74c3c; }
+
+/* Cabeçalho de Ações */
+.header-acoes { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.btn-adicionar { background-color: #5dade2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; }
+
+/* === NOVO LAYOUT EM GRID (ESTILO LETTERBOXD) === */
+.grid-filmes {
+    display: grid;
+    /* Cria colunas responsivas que se ajustam ao tamanho da tela */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.card-filme {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efeito de zoom ao passar o mouse por cima do filme */
+.card-filme:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.capa-filme {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    background-color: #2c3e50; 
+}
+
+.info-filme {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-filme {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+}
+
+.detalhes-texto {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin: 0 0 15px 0;
+}
+
+.acoes-card {
+    margin-top: auto; /* Empurra os botões para o limite inferior do card */
+    display: flex;
+    gap: 10px;
+}
+
+.btn-acao {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
+.btn-detalhes { background-color: #3498db; }
+.btn-excluir { background-color: #e74c3c; }
+
+/* === ANIMAÇÕES E TRANSIÇÕES SUAVES === */
+/* 1. Transição suave de cores para o fundo da página e navbar */
+body, .navbar {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 2. Estilo base do botão Dark Mode */
+#btn-theme {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 26px;
+    margin-right: 3px;
+    padding: 0;
+    transition: transform 0.1s ease; /* Prepara o botão para animar */
+}
+
+/* 3. O Efeito! O botão cresce 20% quando o mouse passa por cima */
+#btn-theme:hover {
+    transform: scale(1.2);
+} 
+
+/* === MODO ESCURO (DARK MODE) UNIFICADO === */
+body.dark-mode {
+    background-color: #14181c !important; /* Fundo cinza escuro elegante */
+    color: #99aabb;
+}
+
+/* Navbar e Linhas */
+body.dark-mode .navbar { 
+    background-color: #1b2228; 
+    border-bottom: 1px solid #2c3440; 
+}
+body.dark-mode hr { 
+    border-color: #2c3440 !important; 
+}
+
+/* Estilos do Catálogo (Cards de Filmes) */
+body.dark-mode .card-filme {
+    background-color: #2c3440;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+body.dark-mode .titulo-filme { color: #ffffff; }
+body.dark-mode .detalhes-texto { color: #8ba5b0; }
+
+/* Estilos da Página de Detalhes */
+body.dark-mode .container {
+    background-color: #1b2228 !important; /* Combina com a navbar */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    color: #e5e5e5;
+}
+
+body.dark-mode .visitante-box {
+    background-color: #2c3440 !important; /* Combina com os cards */
+}
+
+/* Garante que todos os títulos fiquem brancos e visíveis no modo escuro */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4,
+body.dark-mode .header-acoes h1 {
+    color: #ffffff !important;
+}
+
+/* ================================================= */
+/* Correção dos Formulários no Modo Escuro           */
+/* ================================================= */
+
+/* Força o fundo escuro APENAS no formulário de escrever a avaliação */
+body.dark-mode form[action="detalhes?acao=avaliar"] {
+    background-color: #2c3440 !important; 
+}
+
+/* Garante que o mini formulário dos botões continue transparente */
+body.dark-mode form[action="detalhes?acao=lista"] {
+    background-color: transparent !important;
+}
+
+/* Deixa as caixinhas de digitar (input e textarea) com visual escuro também */
+body.dark-mode input[type="number"],
+body.dark-mode textarea {
+    background-color: #1b2228;
+    color: #ffffff;
+    border: 1px solid #4a5a6a;
+}
+
+/* Garante que o texto de dentro do input (placeholder) fique visível */
+body.dark-mode textarea::placeholder {
+    color: #8ba5b0;
+}
+
+/* Bloqueia totalmente o redimensionamento da caixa de texto das avaliações */
+textarea {
+    resize: none;
+}

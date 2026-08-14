@@ -1,0 +1,127 @@
+{
+  "tasks": [
+    {
+      "id": "001-database-migration-mysql",
+      "type": "transform",
+      "description": "Migrate to Azure Database for MySQL",
+      "requirements": "Move the application database to Azure Database for MySQL, update JDBC configuration and secure networking, and validate data access and backups.",
+      "environmentConfiguration": null,
+      "kbId": "mi-mysql",
+      "skills": [
+        { "name": "migration-mi-mysql", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "002-containerize-java-app",
+      "type": "transform",
+      "description": "Containerize Java Application for Container Readiness",
+      "requirements": "Create a production-ready container definition, ensure container startup and port exposure are correct, and prepare the app for Azure container hosting.",
+      "environmentConfiguration": null,
+      "kbId": "containerization-copilot-agent",
+      "skills": [
+        { "name": "containerization-copilot-agent", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "003-session-management-redis",
+      "type": "transform",
+      "description": "Migrate Other Cache Solutions to Azure Managed Redis",
+      "requirements": "Replace HTTP session reliance on local or app-server state with Azure Managed Redis, including session serialization, timeout settings, and deployment validation.",
+      "environmentConfiguration": null,
+      "kbId": "other-cache-solutions-to-azure-managed-cache",
+      "skills": [
+        { "name": "migration-other-cache-solutions-to-azure-managed-cache", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "004-remove-hardcoded-credentials",
+      "type": "transform",
+      "description": "Remove Hardcoded Credentials",
+      "requirements": "Eliminate hardcoded database and service credentials from source code and move them to Azure-configured secret storage or environment-driven configuration.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "remove-hardcoded-credentials", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "005-local-resource-migration",
+      "type": "transform",
+      "description": "Migrate the Local Resource to Azure",
+      "requirements": "Replace localhost-dependent resources with Azure-hosted equivalents, update connection configuration, and verify remote connectivity from the web application.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "migrate-local-resource-to-azure", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "006-hardcoded-urls-review",
+      "type": "transform",
+      "description": "Check hardcoded URLs",
+      "requirements": "Identify and replace hardcoded URLs with configuration-based endpoints, making the app environment-safe and Azure deployment aware.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "check-hardcoded-urls", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "007-default-encoding-review",
+      "type": "transform",
+      "description": "Check Encoding in the Code",
+      "requirements": "Audit request, response, and servlet encoding to ensure UTF-8 is set explicitly and all character handling meets cloud and localization expectations.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "check-default-encoding", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "id": "008-java-version-upgrade",
+      "type": "upgrade",
+      "description": "Upgrade Java Version",
+      "requirements": "Upgrade the project to a supported Azure-ready Java LTS version and validate compile and runtime compatibility across the app and deployment stack.",
+      "environmentConfiguration": null,
+      "kbId": "java-version-upgrade",
+      "skills": [
+        { "name": "java-version-upgrade", "location": "builtin" }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    }
+  ],
+  "metadata": {
+    "language": "java",
+    "planName": "report-20260811231846",
+    "projectName": "CatalogoFilmes",
+    "createdAt": "2026-08-12T02:19:25Z",
+    "version": "1.0"
+  }
+}
