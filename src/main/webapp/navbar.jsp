@@ -8,6 +8,10 @@
             <c:when test="${not empty usuarioLogado}">
                 <span style="margin-right: 15px;">Bem-vindo(a), <b>${usuarioLogado.nome}</b>!</span>
                 
+                <c:if test="${usuarioLogado.perfil eq 'ADMIN'}">
+                    <a href="admin-usuarios" style="text-decoration: none; font-weight: bold; margin-right: 15px;">⚙️ Usuários</a>
+                
+                </c:if>
                 <!-- O botão só aparece se a variável NÃO for true -->
                 <c:if test="${ocultarBotaoLista ne 'true'}">
                     <a href="minhas-listas" class="btn-listas">Minhas Listas</a>

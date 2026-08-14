@@ -3,6 +3,7 @@
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/dao/ItemMidiaDAO.java
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/controller/DetalhesServlet.java
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/controller/MinhaListaServlet.java
+/home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/controller/AdminUsuariosServlet.java
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/dao/UsuarioDAO.java
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/controller/UsuarioServlet.java
 /home/guibetim/Documentos/catalagoFilmes_Projeto/src/main/java/model/Avaliacao.java
