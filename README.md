@@ -42,7 +42,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
 Se você deseja rodar o projeto diretamente na sua IDE para testar e modificar o código em tempo real, siga as instruções abaixo de acordo com o seu ambiente:
 
-### 🔹 Pré-requisito Geral
+### ⚙️ Pré-requisito Geral
 Certifique-se de que a pasta importada seja a raiz do projeto (onde está o arquivo `pom.xml`) para que a IDE reconheça as dependências do Maven e baixe tudo automaticamente.
 
 ### 🔵 Eclipse IDE (Mais tradicional para Java Web)
