@@ -186,8 +186,6 @@ public class ItemMidiaServlet extends HttpServlet {
         item.setSinopse(sinopse);
         item.setTipoMidia(tipo);
         item.setPosterUrl(posterUrl != null && !posterUrl.isEmpty() ? posterUrl : null); 
-        
-        System.out.println("🕵️ [SERVLET] A duracao no objeto ItemMidia eh: " + item.getDuracao());
 
         dao.inserir(item); // Salva no banco DEPOIS de todos os "set"
         

@@ -25,7 +25,6 @@ public class ItemMidiaDAO {
     }
 
     public void inserir(ItemMidia item) {
-        System.out.println("🕵️ [DAO] O banco de dados recebeu a duracao: " + item.getDuracao());
         String sql = "INSERT INTO item_midia (titulo, autor_diretor, ano_lancamento, genero, sinopse, tipo_midia, poster_url, duracao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, item.getTitulo());

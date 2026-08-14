@@ -1,3 +1,8 @@
+
+#### 📽️ Projeto Integrador Transdisciplinar: Sistema de Filmes Java
+
+**Idealizado por:** Guilherme Betim **(BetterSon)**.
+
 <div align="center">
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -7,11 +12,6 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 <br>
-
-# 📽️ Projeto Integrador: Sistema de Filmes Java
-
-
-Idealizado por: Guilherme Betim (BetterSon).
 
 # 🎬 Catálogo de Filmes
 
