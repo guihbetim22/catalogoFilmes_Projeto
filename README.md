@@ -1,7 +1,5 @@
 
-#### 📽️ Projeto Integrador Transdisciplinar: Sistema de Filmes Java
-
-**Idealizado por:** Guilherme Betim **(BetterSon)**.
+###### **Idealizado por:** Guilherme Betim **(BetterSon)**.
 
 <div align="center">
 
