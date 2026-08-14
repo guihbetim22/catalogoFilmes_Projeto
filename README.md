@@ -1,5 +1,4 @@
-
-###### **Idealizado por:** Guilherme Betim **(BetterSon)**.
+### 📽️ Projeto Integrador Transdisciplinar: Sistema de Filmes em Java
 
 <div align="center">
 
@@ -8,6 +7,8 @@
 ![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+###### **Idealizado por:** Guilherme Betim **(BetterSon)**
 
 <br>
 
@@ -35,9 +36,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 3. Localize o script de criação do banco na pasta do projeto:
    `database/catalogo_filmes.sql`
 4. Execute o script no seu MySQL. Ele criará automaticamente o banco de dados `catalogo_filmes`, todas as tabelas (usuários, mídias, avaliações, listas) e a estrutura necessária.
-5. Após upar o repositório na IDE, navegue até as classes de DAO. Atualize as credenciais de conexão do banco de dados com o seu usuário e senha local do MySQL:
-   **login: private final String user = "seu_usuario_mysql";**
-   **senha: private final String password = "sua_senha_mysql";**
+5. Após upar o projeto na IDE, navegue até as classes DAO. Atualize as credenciais de conexão do banco de dados com o seu usuário e senha local do MySQL.
 
 ## 🔐 Configuração do Projeto
 1. Clone este repositório para a sua máquina:
