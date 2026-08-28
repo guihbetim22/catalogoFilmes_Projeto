@@ -34,7 +34,7 @@ O projeto foi construído aplicando boas práticas de Engenharia de Software, ut
 **Passo a Passo:**
 1. Faça o clone do repositório:
    ```bash
-   git clone [https://github.com/SEU_USUARIO/catalogo-de-filmes.git](https://github.com/SEU_USUARIO/catalogo-de-filmes.git)
+   git clone [https://github.com/guihbetim22/catalogoFilmes_Projeto.git](https://github.com/guihbetim22/catalogoFilmes_Projeto.git)
 
 2. Importe o banco de dados utilizando o script catalago_filmes.sql localizado na pasta /database.
 
