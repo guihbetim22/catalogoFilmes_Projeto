@@ -5,7 +5,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-Uma aplicação web Full-Stack desenvolvida para o gerenciamento e interação com mídias (filmes e séries). O projeto foca em entregar uma experiência de usuário (UX) premium, inspirada em grandes plataformas de streaming, com arquitetura robusta e segura no back-end.
+Uma aplicação web Full-Stack desenvolvida para o gerenciamento e interação com mídias (filmes e séries). 
+O projeto foca em entregar uma experiência de usuário (UX) premium, 
+inspirada em grandes plataformas de streaming, com arquitetura robusta e segura no back-end.
+
+
 Desenvolvido por Guilherme Mendes Betim como projeto de portfólio e avaliação acadêmica.
 
 ## ✨ Funcionalidades em Destaque
@@ -34,7 +38,7 @@ O projeto foi construído aplicando boas práticas de Engenharia de Software, ut
 **Passo a Passo:**
 1. Faça o clone do repositório:
    ```bash
-   git clone [https://github.com/guihbetim22/catalogoFilmes_Projeto.git](https://github.com/guihbetim22/catalogoFilmes_Projeto.git)
+   git clone [https://github.com/guihbetim22/catalogoFilmes_Projeto.git]
 
 2. Importe o banco de dados utilizando o script catalago_filmes.sql localizado na pasta /database.
 
