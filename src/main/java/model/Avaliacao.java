@@ -1,3 +1,13 @@
+/**
+ * Classe de domínio que representa a interação de notas e comentários da comunidade.
+ * Relaciona um Usuário a um ItemMidia, permitindo o tráfego de dados sobre 
+ * o engajamento e a opinião do público sobre os filmes e séries do catálogo.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ * @since 2026
+ */
+
 package model;
 
 public class Avaliacao {

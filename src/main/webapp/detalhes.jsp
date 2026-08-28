@@ -1,9 +1,17 @@
+<%--
+    Interface de visualização (View) - Detalhes do Filme/Série.
+    Renderiza as informações completas de um título específico e exibe a 
+    seção de interações, notas e comentários da comunidade.
+    Autor: Guilherme Mendes Betim - 2026
+--%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css?v=2'/>">
     <meta charset="UTF-8">
     <title>Detalhes do Filme</title>
     <style>
@@ -27,12 +35,28 @@
             
             <h3 class="estrelas">⭐ Média Geral: ${media} / 5.0</h3>
 
-            <!-- Botões de Listas Pessoais -->
-            <form action="detalhes?acao=lista" method="post" style="margin-top: 15px;">
-                <input type="hidden" name="idMidia" value="${filme.id}">
-                <button type="submit" name="status" value="JA_ASSISTI" class="btn btn-green">👁️ Já Assisti</button>
-                <button type="submit" name="status" value="QUERO_ASSISTIR" class="btn btn-blue">⏳ Quero Assistir</button>
-            </form>
+            <!-- ========================================== -->
+            <!-- PROTEÇÃO DOS BOTÕES DE LISTAS PESSOAIS     -->
+            <!-- ========================================== -->
+            <c:choose>
+                <c:when test="${empty usuarioLogado}">
+                    <!-- Botões Falsos: Apenas chamam o Toast -->
+                    <div style="margin-top: 15px;">
+                        <button type="button" class="btn btn-green" onclick="mostrarAlertaLogin()">👁️ Já Assisti</button>
+                        <button type="button" class="btn btn-blue" onclick="mostrarAlertaLogin()">⏳ Quero Assistir</button>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <!-- Formulário Real: Executado se estiver logado -->
+                    <form action="detalhes?acao=lista" method="post" style="margin-top: 15px;">
+                        <input type="hidden" name="idMidia" value="${filme.id}">
+                        <button type="submit" name="status" value="JA_ASSISTI" class="btn btn-green">👁️ Já Assisti</button>
+                        <button type="submit" name="status" value="QUERO_ASSISTIR" class="btn btn-blue">⏳ Quero Assistir</button>
+                    </form>
+                </c:otherwise>
+            </c:choose>
+            <!-- ========================================== -->
+
         </div>
 
         <div class="clear"></div>
@@ -47,7 +71,21 @@
             <br>
             <textarea name="comentario" rows="3" style="width: 100%; padding: 10px; box-sizing: border-box;" placeholder="Escreva o que você achou..." required></textarea>
             <br><br>
-            <button type="submit" class="btn btn-blue">Publicar Avaliação</button>
+            
+            <!-- ========================================== -->
+            <!-- PROTEÇÃO DO BOTÃO DE AVALIAR               -->
+            <!-- ========================================== -->
+            <c:choose>
+                <c:when test="${empty usuarioLogado}">
+                    <!-- Botão Falso -->
+                    <button type="button" class="btn btn-blue" onclick="mostrarAlertaLogin()">Publicar Avaliação</button>
+                </c:when>
+                <c:otherwise>
+                    <!-- Botão Real -->
+                    <button type="submit" class="btn btn-blue">Publicar Avaliação</button>
+                </c:otherwise>
+            </c:choose>
+            <!-- ========================================== -->
         </form>
 
         <hr style="margin: 30px 0;">
@@ -64,7 +102,7 @@
                         <input type="hidden" name="idMidia" value="${filme.id}">
                         <input type="hidden" name="idAvaliacao" value="${av.id}">
                         
-                        <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;" onclick="return confirm('ADMIN: Tem certeza que deseja apagar este comentário da comunidade?');">
+                        <button type="submit" class="btn btn-red" style="font-size: 12px; padding: 5px 10px;" onclick="return confirm('ADMIN: Tem certeza que deseja apagar este comentário da comunidade?');">
                             🗑️ Excluir
                         </button>
                     </form>
@@ -80,5 +118,8 @@
             <p style="color: #7f8c8d;">Nenhum comentário ainda. Seja o primeiro a avaliar!</p>
         </c:if>
     </div>
+    <!-- Fim do conteúdo da sua página -->
+    
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

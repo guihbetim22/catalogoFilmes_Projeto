@@ -1,3 +1,15 @@
+/**
+ * Filtro de segurança interceptador de requisições (Interceptor).
+ * Implementa a interface Filter para garantir que rotas protegidas da aplicação 
+ * só sejam acessadas por usuários com sessões válidas e com os devidos privilégios.
+ * Redireciona tentativas de acesso não autorizado para a página de login, 
+ * prevenindo acessos diretos via URL a recursos e dashboards sensíveis do sistema.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ * @since 2026
+ */
+
 package filter;
 
 import java.io.IOException;

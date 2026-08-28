@@ -1,3 +1,12 @@
+/**
+ * Controlador (Servlet) que gerencia as listas personalizadas do usuário logado.
+ * Processa as requisições para adicionar, remover ou listar os filmes marcados 
+ * com status específicos ("Já Assisti" / "Quero Assistir") no catálogo pessoal.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -38,10 +47,13 @@ public class MinhaListaServlet extends HttpServlet {
             status = "QUERO_ASSISTIR";
         }
 
-        // === NOVA LÓGICA DE EXCLUSÃO ===
+        // === LÓGICA DE EXCLUSÃO ===
         if ("remover".equals(acao)) {
             int idMidia = Integer.parseInt(request.getParameter("idMidia"));
             interacaoDAO.removerDaLista(usuario.getId(), idMidia);
+            
+            // === TOAST DE REMOÇÃO ===
+            session.setAttribute("mensagemToast", "Filme removido da sua lista!");
             
             // Redireciona de volta para a mesma aba que o usuário estava
             response.sendRedirect("minhas-listas?status=" + status);

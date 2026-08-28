@@ -1,8 +1,15 @@
+<%--
+    Interface de visualização (View) - Gestão de Usuários.
+    Permite ao Administrador visualizar contas, alterar níveis de permissão e excluir cadastros.
+    Autor: Guilherme Mendes Betim - 2026
+--%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
     <meta charset="UTF-8">
     <title>Gerenciar Usuários</title>
@@ -44,5 +51,8 @@
             </div>
         </c:forEach>
     </div>
+    <!-- Fim do conteúdo da sua página -->
+    
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

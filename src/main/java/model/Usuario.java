@@ -1,3 +1,13 @@
+/**
+ * Classe de domínio que representa os usuários do sistema.
+ * Armazena as credenciais de acesso, informações pessoais e o perfil de autorização 
+ * (como ADMIN ou USER), sendo fundamental para o controle de acesso e gestão de sessão.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ * @since 2026
+ */
+
 package model;
 
 public class Usuario {

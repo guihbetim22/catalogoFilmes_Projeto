@@ -1,77 +1,45 @@
-<div align="center">
-
-### 📽️ Projeto Integrador Transdisciplinar: Sistema de Filmes em Java
-
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-
-###### **Idealizado por:** Guilherme Betim **(BetterSon)**
-
-<br>
-
 # 🎬 Catálogo de Filmes
 
-Um sistema web completo para gerenciamento de catálogo de filmes, avaliações da comunidade e listas pessoais, desenvolvido com Java e arquitetura MVC.
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![JSP/Servlets](https://img.shields.io/badge/JSP_/_Servlets-007396?style=for-the-badge&logo=java&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-## 🚀 Tecnologias Utilizadas
-* **Back-end:** Java, Jakarta EE (Servlets)
-* **Front-end:** JSP, JSTL, HTML, CSS (Modo Escuro nativo)
-* **Banco de Dados:** MySQL (Padrão DAO)
-* **Gerenciamento de Dependências:** Maven
-* **Servidor de Aplicação:** Apache Tomcat (v10+)
+Uma aplicação web Full-Stack desenvolvida para o gerenciamento e interação com mídias (filmes e séries). O projeto foca em entregar uma experiência de usuário (UX) premium, inspirada em grandes plataformas de streaming, com arquitetura robusta e segura no back-end.
+Desenvolvido por Guilherme Mendes Betim como projeto de portfólio e avaliação acadêmica.
 
-## ⚙️ Pré-requisitos
-Antes de começar, certifique-se de ter instalado em sua máquina:
-* [Java JDK 11+](https://www.oracle.com/java/technologies/downloads/)
-* [Maven](https://maven.apache.org/)
-* [MySQL Server](https://dev.mysql.com/downloads/)
-* [Apache Tomcat](https://tomcat.apache.org/)
+## ✨ Funcionalidades em Destaque
 
-## 🗄️ Configuração do Banco de Dados
-1. Abra o seu gerenciador do MySQL (Workbench, DBeaver, etc.).
-2. Crie uma nova conexão ou utilize uma existente.
-3. Localize o script de criação do banco na pasta do projeto:
-   `database/catalogo_filmes.sql`
-4. Execute o script no seu MySQL. Ele criará automaticamente o banco de dados `catalogo_filmes`, todas as tabelas (usuários, mídias, avaliações, listas) e a estrutura necessária.
-5. Após upar o projeto na IDE, navegue até as classes DAO. Atualize as credenciais de conexão do banco de dados com o seu usuário e senha local do MySQL.
+*   **UI/UX Premium e Dark Mode:** Interface responsiva com adaptação nativa para modo claro e escuro, utilizando CSS puro e variáveis de ambiente.
+*   **Controle de Acesso (Autenticação):** Sistema de login seguro com separação de privilégios entre **Usuários** (interação com o catálogo) e **Administradores** (dashboard de gestão e exclusão de comentários/usuários).
+*   **Interatividade Pessoal:** Usuários podem classificar filmes em listas personalizadas ("Já Assisti" e "Quero Assistir") e deixar avaliações (notas de 1 a 5) com comentários.
+*   **Gestão de Catálogo:** Adição de novos títulos ao banco de dados com suporte a integração via API (TMDB) ou cadastro manual.
 
-## 🔐 Configuração do Projeto
-1. Clone este repositório para a sua máquina:
+## 🛠️ Arquitetura e Tecnologias
+
+O projeto foi construído aplicando boas práticas de Engenharia de Software, utilizando:
+
+*   **Linguagem & Back-end:** Java (Servlets, JSP e JSTL).
+*   **Padrões de Projeto:** **MVC** (Model-View-Controller) para separação de responsabilidades lógicas e visuais, e **DAO** (Data Access Object) para abstração da persistência de dados.
+*   **Banco de Dados:** SQL relacional gerenciado via JDBC.
+*   **Front-end:** HTML5, CSS3 avançado (Flexbox, Grid, animações, keyframes e custom properties).
+
+## 🚀 Como Executar o Projeto
+
+**Pré-requisitos:**
+*   Java Development Kit (JDK) 11 ou superior.
+*   Servidor Apache Tomcat (versão 9 ou 10).
+*   Banco de Dados SQL (MySQL/PostgreSQL) rodando localmente.
+
+**Passo a Passo:**
+1. Faça o clone do repositório:
    ```bash
-   git clone (https://github.com/guihbetim22/catalagoFilmes_Projeto.git)
+   git clone [https://github.com/SEU_USUARIO/catalogo-de-filmes.git](https://github.com/SEU_USUARIO/catalogo-de-filmes.git)
 
-## 💻 Como Executar o Projeto na IDE
+2. Importe o banco de dados utilizando o script catalago_filmes.sql localizado na pasta /database.
 
-Se você deseja rodar o projeto diretamente na sua IDE para testar e modificar o código em tempo real, siga as instruções abaixo de acordo com o seu ambiente:
+3. Configure as credenciais de banco de dados (usuário e senha) nos arquivos da pasta DAO (ou arquivo de propriedades, se aplicável).
 
-### ⚙️ Pré-requisito Geral
-Certifique-se de que a pasta importada seja a raiz do projeto (onde está o arquivo `pom.xml`) para que a IDE reconheça as dependências do Maven e baixe tudo automaticamente.
+4. Adicione o projeto na sua IDE (Eclipse, IntelliJ ou VS Code) configurada com o Tomcat.
 
-### 🔵 Eclipse IDE (Mais tradicional para Java Web)
-1. Vá em `File > Import > Maven > Existing Maven Projects` e selecione a pasta do projeto.
-2. Na aba inferior, procure por **Servers**. Se não tiver, vá em `Window > Show View > Servers`.
-3. Clique com o botão direito na aba Servers > `New > Server`.
-4. Escolha **Apache > Tomcat v10.0** (ou a versão que você instalou) e aponte para a pasta onde o Tomcat está instalado no seu computador.
-5. Adicione o projeto `catalogo_filmes` ao servidor.
-6. Clique no botão de **Play** (Start) no servidor. O projeto estará rodando no seu `localhost`.
-
-### 🟣 Visual Studio Code (VS Code)
-1. Abra a pasta do projeto no VS Code.
-2. Instale o pacote de extensões **Extension Pack for Java** da Microsoft.
-3. Instale a extensão **Community Server Connectors** (desenvolvida pela Red Hat) para gerenciar o Tomcat.
-4. Na barra lateral (Explorer), procure pela aba **SERVERS**.
-5. Clique no ícone de `+` para adicionar um novo servidor, escolha o seu Tomcat local e aponte o diretório.
-6. Clique com o botão direito no servidor adicionado e selecione `Add Deployment`. Escolha o arquivo `.war` gerado na pasta `target` (lembre-se de rodar o `mvn clean package` antes).
-7. Clique com o botão direito no servidor e selecione `Start Server`.
-
-### 🟠 IntelliJ IDEA
-*Nota: A integração nativa com Tomcat exige a versão Ultimate, mas você pode usar o plugin "Smart Tomcat" na versão Community.*
-1. Abra o projeto apontando para o arquivo `pom.xml`.
-2. Vá em `Run > Edit Configurations`.
-3. Clique no `+` e selecione **Smart Tomcat** (se instalou o plugin) ou **Tomcat Server > Local** (na versão Ultimate).
-4. No campo **Tomcat server**, aponte para a instalação do Tomcat na sua máquina.
-5. No campo **Deployment Directory**, aponte para a pasta `src/main/webapp`.
-6. Aplique as configurações e clique no botão verde de **Play** no canto superior direito para iniciar a aplicação.
+5. Inicie o servidor e acesse http://localhost:8080/catalogoFilmes_Projeto.

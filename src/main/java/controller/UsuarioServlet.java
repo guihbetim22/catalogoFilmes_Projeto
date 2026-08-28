@@ -1,3 +1,13 @@
+/**
+ * Controlador (Servlet) responsável pelos fluxos de autenticação e gestão de contas.
+ * Intercepta requisições de login, logout e cadastro de novos usuários, 
+ * validando as credenciais via UsuarioDAO e gerenciando a criação ou invalidação 
+ * das sessões HTTP.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package controller;
 
 import java.io.IOException;

@@ -1,3 +1,15 @@
+/**
+ * Classe de domínio que representa a entidade de mídia (Filme ou Série) no catálogo.
+ * Atua como o "Model" na arquitetura MVC, sendo responsável por encapsular os atributos
+ * específicos de cada título, como nome, gênero, duração, diretor e ano de lançamento.
+ * Facilita o tráfego seguro dessas informações entre a interface de usuário (JSP) 
+ * e a camada de persistência (DAO).
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ * @since 2026
+ */
+
 package model;
 
 public class ItemMidia {

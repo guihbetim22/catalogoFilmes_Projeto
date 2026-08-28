@@ -1,3 +1,12 @@
+/**
+ * Data Access Object (DAO) dedicado à persistência e consulta de dados de Usuários.
+ * Executa as operações de validação de credenciais (login), cadastro de novas contas
+ * e consultas para o painel administrativo, garantindo a segurança das informações via JDBC.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package dao;
 
 import java.sql.Connection;
@@ -14,8 +23,8 @@ import model.Usuario;
 
 public class UsuarioDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
-    private final String user = "java_user"; // Coloque o usuário do banco aqui!
-    private final String password = "Filmes@2002"; // Coloque a senha do banco aqui!
+    private final String user = "user"; // Coloque o usuário do banco aqui!
+    private final String password = "pass"; // Coloque a senha do banco aqui!
 
     private Connection conectar() throws SQLException {
         try {
@@ -71,10 +80,6 @@ public class UsuarioDAO {
         }
         return null; // Retorna nulo se o usuário não for encontrado ou a senha estiver incorreta
     }
-
-    // ==========================================
-    // MÉTODOS NOVOS ADICIONADOS ABAIXO
-    // ==========================================
 
     // 1. Método para listar todos os usuários na tela do Admin
     public List<Usuario> listarTodosUsuarios() {

@@ -1,3 +1,12 @@
+/**
+ * Controlador (Servlet) responsável por orquestrar a exibição dos detalhes de uma mídia.
+ * Busca as informações completas do filme no ItemMidiaDAO e as avaliações da comunidade 
+ * no InteracaoDAO, consolidando os dados para a renderização na página de detalhes.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -58,16 +67,25 @@ public class DetalhesServlet extends HttpServlet {
                 int nota = Integer.parseInt(request.getParameter("nota"));
                 String comentario = request.getParameter("comentario");
                 interacaoDAO.adicionarAvaliacao(usuario.getId(), idMidia, nota, comentario);
+                
+                // === TOAST DE AVALIAÇÃO ===
+                session.setAttribute("mensagemToast", "Avaliação enviada com sucesso!");
             }
             case "lista" -> {
                 String status = request.getParameter("status"); // JA_ASSISTI ou QUERO_ASSISTIR
                 interacaoDAO.adicionarALista(usuario.getId(), idMidia, status);
+                
+                // === TOAST DE LISTA ===
+                session.setAttribute("mensagemToast", "Filme adicionado à sua lista!");
             }
             case "excluirComentario" -> {
                 // A trava dupla continua APENAS para essa ação, confirmando se o logado é ADMIN
                 if ("ADMIN".equals(usuario.getPerfil())) {
                     int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
                     interacaoDAO.excluirAvaliacao(idAvaliacao);
+                    
+                    // === TOAST DE EXCLUSÃO ===
+                    session.setAttribute("mensagemToast", "Comentário excluído com sucesso!");
                 }
             }
             default -> {

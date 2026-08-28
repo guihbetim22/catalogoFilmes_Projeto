@@ -1,4 +1,11 @@
 /* ==========================================================================
+   Folha de Estilos Principal - Catálogo de Filmes
+   Autor: Guilherme Mendes Betim - 2026
+   Descrição: Responsável pela estilização global, responsividade, 
+              animações de interface e variáveis de cores do Dark Mode.
+   ========================================================================== */
+   
+/* ==========================================================================
    1. BASE E LAYOUT GLOBAL
    ========================================================================== */
 body { 
@@ -28,36 +35,81 @@ body {
 .nav-links a { text-decoration: none; color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; margin-left: 10px; }
 
 /* Botões Padronizados */
-.btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; text-decoration: none; display: inline-block; }
-.btn-listas { background-color: #27ae60; }
-.btn-sair { background-color: #e74c3c; }
-.btn-blue { background-color: #3498db; }
-.btn-green { background-color: #27ae60; }
-.btn-red { background-color: #e74c3c; color: white; padding: 5px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-.btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; }
-.btn-adicionar { background-color: #5dade2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; }
+.btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; color: white; font-weight: bold; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+.btn-listas { background-color: #27ae60; transition: all 0.3s ease; }
+.btn-sair { background-color: #e74c3c; transition: all 0.3s ease; }
+.btn-blue { background-color: #3498db; transition: all 0.3s ease; }
+.btn-green { background-color: #27ae60; transition: all 0.3s ease; }
+.btn-red { background-color: #e74c3c; color: white; padding: 5px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
+.btn-gray { background-color: #7f8c8d; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; margin-bottom: 20px; display: inline-block; transition: all 0.3s ease; }
 
-/* Botão Tema Escuro */
-#btn-theme { background: none; border: none; font-size: 20px; cursor: pointer; margin-left: 26px; margin-right: 3px; padding: 0; transition: transform 0.1s ease; }
-#btn-theme:hover { transform: scale(1.2); }
+/* Botão Exclusivo para Admin */
+.btn-admin { background-color: #f39c12; color: white; transition: all 0.3s ease; }
+.btn-admin:hover { background-color: #e67e22; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4); }
+.btn-adicionar { background-color: #5dade2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease; }
 
-/* --- Barra de Pesquisa na Navbar --- */
-.search-form { display: flex; align-items: center; margin: 0 15px; flex-grow: 1; max-width: 400px; }
-.search-input { width: 100%; padding: 8px 15px; border: 1px solid #ccc; border-radius: 20px 0 0 20px; outline: none; background-color: #fdfbf7; color: #2c3e50; }
-.search-btn { background-color: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 0 20px 20px 0; cursor: pointer; font-weight: bold; transition: 0.2s; }
-.search-btn:hover { background-color: #2980b9; }
+/* Efeitos de Interação (Glow e Elevação) para todos */
+.btn-blue:hover { background-color: #2980b9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+.btn-green:hover, .btn-listas:hover { background-color: #2ecc71; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); }
+.btn-red:hover, .btn-sair:hover { background-color: #c0392b; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); }
+.btn-gray:hover { background-color: #95a5a6; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(127, 140, 141, 0.4); }
+.btn-adicionar:hover { background-color: #3498db; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(93, 173, 226, 0.4); }
 
-/* Adaptação da Pesquisa para o Modo Escuro */
-body.dark-mode .search-input { background-color: #14181c; border-color: #4a5a6a; color: #ffffff; }
+/* Botão Tema Escuro Otimizado (Mobile) */
+.btn-theme-toggle { background: transparent; border: none; font-size: 24px; cursor: pointer; padding: 10px; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s, transform 0.2s; margin-left: 10px; -webkit-tap-highlight-color: transparent; }
+.btn-theme-toggle:hover, .btn-theme-toggle:active { background-color: rgba(139, 165, 176, 0.2); transform: scale(1.1); }
+body.dark-mode .btn-theme-toggle:hover, body.dark-mode .btn-theme-toggle:active { background-color: rgba(255, 255, 255, 0.1); }
+
+/* --- Nova Barra de Pesquisa Global na Navbar (Centralizada e Moderna) --- */
+.navbar-search-container { flex: 1; display: flex; justify-content: center; padding: 0 20px; }
+.navbar-search-form { display: flex; width: 100%; max-width: 500px; position: relative; }
+.navbar-search-input { width: 100%; padding: 10px 45px 10px 20px; border: 1px solid #bdc3c7; border-radius: 30px; font-size: 15px; outline: none; transition: all 0.3s ease; background-color: #fdfbf7; color: #2c3e50; }
+.navbar-search-input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52, 152, 219, 0.4); }
+.navbar-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #7f8c8d; font-size: 18px; cursor: pointer; padding: 8px; transition: color 0.3s; border-radius: 50%; }
+.navbar-search-btn:hover { color: #3498db; }
+
+/* Adaptação da Nova Pesquisa para o Modo Escuro */
+body.dark-mode .navbar-search-input { background-color: #1b2228; border-color: #4a5a6a; color: #ffffff; }
+body.dark-mode .navbar-search-input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52, 152, 219, 0.6); }
+body.dark-mode .navbar-search-btn { color: #8ba5b0; }
+body.dark-mode .navbar-search-btn:hover { color: #ffffff; }
+
+/* --- Novo Logo da Navbar --- */
+.navbar-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; transition: transform 0.2s ease; }
+.navbar-logo:hover { transform: scale(1.03); }
+.logo-icone { font-size: 26px; }
+.logo-texto { font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; margin: 0; }
+.logo-destaque { color: #3498db; }
+
+.logo-de {
+    /* Cria o gradiente da esquerda (branco) para a direita (azul) */
+    background: linear-gradient(90deg, #ffffff 0%, #3498db 100%);
+    
+    /* Aplica o gradiente apenas dentro do texto */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Deixa a cor original da fonte transparente para o gradiente aparecer */
+    -webkit-text-fill-color: transparent;
+    
+    /* Ajustes de espaçamento opcional para não ficar colado */
+    padding: 0 2px;
+}
 
 /* ==========================================================================
    3. CATÁLOGO DE FILMES
    ========================================================================== */
 .header-acoes { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .grid-filmes { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 20px; }
-.card-filme { background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.card-filme:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-.capa-filme { width: 100%; height: 330px; object-fit: cover; background-color: #2c3e50; }
+
+/* Animação do Card Inteiro */
+.card-filme { background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-filme:hover { transform: translateY(-8px); box-shadow: 0 15px 25px rgba(0,0,0,0.3); }
+
+/* Animação de Zoom Interno na Imagem */
+.capa-filme { width: 100%; height: 330px; object-fit: cover; background-color: #2c3e50; transition: transform 0.5s ease; }
+.card-filme:hover .capa-filme { transform: scale(1.08); }
+
 .info-filme { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
 .titulo-filme { font-size: 16px; font-weight: bold; color: #2c3e50; margin: 0 0 5px 0; line-height: 1.2; }
 .detalhes-texto { font-size: 13px; color: #7f8c8d; margin: 0 0 15px 0; }
@@ -81,7 +133,18 @@ body.dark-mode .search-input { background-color: #14181c; border-color: #4a5a6a;
 .tag-admin { background-color: #f39c12; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 10px; }
 
 /* ==========================================================================
-   6. MINHAS LISTAS
+   6. ADMIN: DASHBOARD
+   ========================================================================== */
+.dashboard-container { max-width: 1100px; margin: 40px auto; padding: 20px; }
+.cards-topo { display: flex; gap: 20px; margin-bottom: 30px; }
+.card-stat { background: #1b2228; padding: 20px; border-radius: 10px; border: 1px solid #4a5a6a; flex: 1; text-align: center; color: white; }
+.card-stat h3 { font-size: 32px; color: #3498db; margin-top: 10px; }
+.graficos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.grafico-card { background: #1b2228; padding: 20px; border-radius: 10px; border: 1px solid #4a5a6a; color: white; }
+.grafico-card h3 { font-size: 18px; margin-bottom: 15px; color: #ecf0f1; border-bottom: 1px solid #4a5a6a; padding-bottom: 10px; }
+
+/* ==========================================================================
+   7. MINHAS LISTAS
    ========================================================================== */
 .abas { margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
 .aba { padding: 10px 20px; text-decoration: none; font-weight: bold; color: #7f8c8d; border-radius: 4px; margin-right: 10px; transition: 0.2s; }
@@ -96,28 +159,30 @@ body.dark-mode .search-input { background-color: #14181c; border-color: #4a5a6a;
 .btn-remover { display: block; background-color: #e74c3c; color: white; text-decoration: none; padding: 8px 5px; border-radius: 3px; font-size: 13px; font-weight: bold; }
 
 /* ==========================================================================
-   7. AUTENTICAÇÃO E CADASTRO (ESCOPADO PARA NÃO QUEBRAR O LAYOUT)
+   8. AUTENTICAÇÃO (MENU INTERATIVO FLUTUANTE)
    ========================================================================== */
-.wrapper-login { display: flex; justify-content: center; padding: 60px 20px; }
-.container-login { background: #fff; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 320px; margin: 0 15px; height: fit-content; }
-.container-login h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; font-size: 22px; }
-.container-login input[type="text"], .container-login input[type="email"], .container-login input[type="password"] { width: 100%; padding: 10px; margin: 8px 0 16px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-.container-login button { width: 100%; background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; font-weight: bold; }
-.container-login button:hover { background-color: #2980b9; }
-
-.container-cadastro form { background: #fff; padding: 20px; border-radius: 5px; border: 1px solid #ddd; max-width: 500px; margin-bottom: 20px; }
-.container-cadastro h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-.container-cadastro label { font-weight: bold; }
-.container-cadastro input[type="text"], .container-cadastro input[type="number"], .container-cadastro textarea { width: 100%; padding: 8px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-.container-cadastro button { background-color: #27ae60; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-.container-cadastro button:hover { background-color: #2ecc71; }
-
-.msg-erro { color: red; font-weight: bold; text-align: center; position: absolute; top: 15px; width: 100%; }
-.msg-sucesso { color: green; font-weight: bold; text-align: center; position: absolute; top: 15px; width: 100%; }
-textarea { resize: none; }
+.auth-wrapper { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #14181c; padding: 20px; box-sizing: border-box; }
+.auth-floating-box { width: 100%; max-width: 380px; background: rgba(27, 34, 40, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 30px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); position: relative; overflow: hidden; }
+.auth-toggle-menu { display: flex; background: rgba(0,0,0,0.4); border-radius: 30px; margin-bottom: 25px; padding: 4px; position: relative; }
+.toggle-btn { flex: 1; background: transparent; border: none; color: #8ba5b0; font-size: 14px; font-weight: bold; padding: 10px; cursor: pointer; border-radius: 25px; transition: color 0.3s; z-index: 2; position: relative; }
+.toggle-btn.active { color: #ffffff; }
+.toggle-slider { position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px); background: #3498db; border-radius: 25px; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); z-index: 1; }
+.form-section { display: none; animation: slideUpFade 0.4s ease forwards; }
+.form-section.active { display: block; }
+.auth-input-group { margin-bottom: 15px; text-align: left; }
+.auth-input-group label { display: block; color: #8ba5b0; font-size: 12px; margin-bottom: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+.auth-input-group input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0, 0, 0, 0.2); color: #ffffff; font-size: 14px; outline: none; transition: 0.3s; box-sizing: border-box; }
+.auth-input-group input:focus { border-color: #3498db; background: rgba(0, 0, 0, 0.4); box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); }
+.auth-btn { width: 100%; padding: 14px; border: none; border-radius: 8px; background: #3498db; color: white; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.auth-btn:hover { background: #2980b9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+.btn-green { background: #27ae60; } .btn-green:hover { background: #2ecc71; box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); }
+@keyframes slideUpFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.msg-box { padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; font-weight: bold; text-align: center; }
+.msg-erro { color: #ff7675; background: rgba(255, 118, 117, 0.1); border: 1px solid rgba(255, 118, 117, 0.3); }
+.msg-sucesso { color: #55efc4; background: rgba(85, 239, 196, 0.1); border: 1px solid rgba(85, 239, 196, 0.3); }
 
 /* ==========================================================================
-   8. DARK MODE UNIFICADO
+   9. DARK MODE UNIFICADO
    ========================================================================== */
 body.dark-mode { background-color: #14181c !important; color: #99aabb; }
 body.dark-mode .navbar { background-color: #1b2228; border-bottom: 1px solid #2c3440; }
@@ -146,8 +211,10 @@ body.dark-mode form[action="detalhes?acao=lista"] { background-color: transparen
 body.dark-mode input[type="text"], body.dark-mode input[type="email"], body.dark-mode input[type="password"], body.dark-mode input[type="number"], body.dark-mode textarea { background-color: #1b2228; color: #ffffff; border: 1px solid #4a5a6a; }
 body.dark-mode textarea::placeholder { color: #8ba5b0; }
 
+body.dark-mode .logo-de { background: linear-gradient(90deg, #ffffff 0%, #3498db 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
 /* ==========================================================================
-   9. BOTÕES DE FILTRO (HOME)
+   10. BOTÕES DE FILTRO (HOME)
    ========================================================================== */
 .filtros-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; align-items: center; }
 .titulo-filtro { font-weight: bold; color: #2c3e50; font-size: 14px; margin-right: 5px; }
@@ -166,3 +233,92 @@ body.dark-mode .btn-filtro.ativo { background-color: #3498db; color: white; bord
 
 /* Adaptação da caixinha para o Modo Escuro */
 body.dark-mode .input-ano { background-color: #1b2228; color: #8ba5b0; border-color: #4a5a6a; }
+
+/* ==========================================================================
+   11. TOAST (NOTIFICAÇÕES) E ALERTAS DE LOGIN
+   ========================================================================== */
+.toast-notificacao { position: fixed; bottom: 30px; right: 30px; background-color: #2ecc71; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 10px; animation: slideIn 0.5s forwards; }
+.toast-notificacao.esconder { animation: slideOut 0.5s forwards; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(120%); opacity: 0; } }
+
+/* Toast de Alerta (Login Necessário) */
+.toast-alerta { visibility: hidden; min-width: 250px; background-color: #E50914; color: #ffffff; text-align: center; border-radius: 8px; padding: 16px; position: fixed; z-index: 9999; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.4s, bottom 0.4s; font-weight: bold; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); }
+.toast-alerta.mostrar { visibility: visible; opacity: 1; bottom: 50px; }
+.toast-link { color: #ffffff; text-decoration: underline; margin-left: 10px; }
+
+/* ==========================================================================
+   12. PAGINAÇÃO
+   ========================================================================== */
+.paginacao { display: flex; justify-content: center; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+.btn-pagina { padding: 8px 14px; border: 1px solid #bdc3c7; border-radius: 4px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: 0.2s; background-color: #fdfbf7; }
+.btn-pagina:hover { background-color: #ecf0f1; }
+.btn-pagina.ativo { background-color: #3498db; color: white; border-color: #3498db; }
+
+/* Paginação no Modo Escuro */
+body.dark-mode .btn-pagina { border-color: #4a5a6a; color: #8ba5b0; background-color: #1b2228; }
+body.dark-mode .btn-pagina:hover { background-color: #2c3440; color: #ffffff; }
+body.dark-mode .btn-pagina.ativo { background-color: #3498db; color: white; border-color: #3498db; }
+
+/* ==========================================================================
+   13. CADASTRO DE FILME (TMDB E MANUAL)
+   ========================================================================== */
+.box-tmdb { background-color: #f1f2f6; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdde1; }
+body.dark-mode .box-tmdb { background-color: #2c3440; border-color: #4a5a6a; }
+body.dark-mode .box-tmdb h3, body.dark-mode .divisor-manual { color: #ffffff; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #2c3e50; }
+body.dark-mode .form-group label { color: #8ba5b0; }
+.form-row { display: flex; gap: 15px; }
+.form-row .form-group { flex: 1; }
+.input-cadastro { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+body.dark-mode .input-cadastro { background-color: #1b2228; border-color: #4a5a6a; color: #ffffff; }
+
+/* ==========================================================================
+   14. ESTILOS DO HERO (TÍTULO) E PAINEL DE FILTROS
+   ========================================================================== */
+.titulo-destaque { font-size: 34px; font-weight: 900; margin: 0 0 5px 0; background: linear-gradient(90deg, #2980b9, #6dd5ed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitulo-destaque { font-size: 15px; color: #7f8c8d; margin: 0; }
+.painel-filtros { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; background-color: #f1f2f6; padding: 15px 20px; border-radius: 12px; border: 1px solid #e1e4e8; }
+body.dark-mode .titulo-destaque { background: linear-gradient(90deg, #3498db, #2ecc71); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+body.dark-mode .subtitulo-destaque { color: #8ba5b0; }
+body.dark-mode .painel-filtros { background-color: #1b2228; border: 1px solid #2c3440; }
+
+/* ==========================================================================
+   15. RESPONSIVIDADE (MOBILE) E AJUSTES DE UX
+   ========================================================================== */
+.btn { white-space: nowrap; } /* Impede que qualquer botão quebre o texto em duas linhas */
+
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; padding: 15px; text-align: center; }
+    .navbar-search-container { width: 100%; padding: 0; order: 3; }
+    .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; gap: 10px; order: 2; }
+    .nav-links > span { display: none; } /* Esconde a mensagem "Bem-vindo" em telas pequenas para poupar espaço */
+    .nav-links a { margin-left: 0; }
+    .header-acoes { flex-direction: column; text-align: center; gap: 15px; }
+    .painel-filtros { justify-content: center; }}
+
+/* ==========================================================================
+   16. RODAPÉ (FOOTER)
+   ========================================================================== */
+.site-footer { background-color: #34495e; color: white; padding: 40px 20px 20px 20px; margin-top: 60px; text-align: center; border-radius: 8px 8px 0 0; }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 800px; margin: 0 auto; }
+
+/* Logo no Rodapé */
+.footer-logo { opacity: 0.8; margin-bottom: 5px; }
+.footer-logo .logo-texto { font-size: 18px; color: #ffffff; font-weight: 900; letter-spacing: -0.5px; }
+.footer-logo .logo-destaque { color: #3498db; }
+
+/* Direitos e Contatos */
+.footer-copyright { font-size: 13px; color: #bdc3c7; }
+.footer-contato { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 5px; }
+.footer-contato a { color: #bdc3c7; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.2s; }
+.footer-contato a:hover { color: #3498db; }
+.separador { color: #7f8c8d; font-size: 12px; }
+
+/* Adaptação para o Modo Escuro */
+body.dark-mode .site-footer { background-color: #1b2228; border-top: 1px solid #2c3440; border-radius: 0; }
+body.dark-mode .footer-copyright { color: #8ba5b0; }
+body.dark-mode .footer-contato a { color: #8ba5b0; }
+body.dark-mode .footer-contato a:hover { color: #3498db; }
+body.dark-mode .separador { color: #4a5a6a; }

@@ -1,3 +1,12 @@
+/**
+ * Controlador (Servlet) exclusivo para a área administrativa.
+ * Gerencia as requisições de visualização, edição de permissões e exclusão 
+ * de contas de usuários do sistema, exigindo privilégios elevados de acesso.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -44,6 +53,12 @@ public class AdminUsuariosServlet extends HttpServlet {
             // Impede que o Admin exclua a própria conta
             if (idExcluir != admin.getId()) {
                 usuarioDAO.excluirUsuario(idExcluir);
+                
+                // === DISPARANDO O TOAST DE SUCESSO ===
+                session.setAttribute("mensagemToast", "Usuário excluído com sucesso!");
+            } else {
+                // === DISPARANDO O TOAST DE AVISO ===
+                session.setAttribute("mensagemToast", "Você não pode excluir sua própria conta!");
             }
         }
         

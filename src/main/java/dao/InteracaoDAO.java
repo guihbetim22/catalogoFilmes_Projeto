@@ -1,3 +1,12 @@
+/**
+ * Data Access Object (DAO) que gerencia as interações sociais e listas personalizadas.
+ * Responsável por persistir e recuperar avaliações, comentários e as relações de 
+ * filmes marcados como "Já Assisti" ou "Quero Assistir" pelos usuários.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package dao;
 
 import java.sql.Connection;
@@ -13,8 +22,8 @@ import model.ItemMidia;
 
 public class InteracaoDAO {
     private final String url = "jdbc:mysql://localhost:3306/catalogo_filmes";
-    private final String user = "java_user"; // Coloque o usuário do banco aqui!
-    private final String password = "Filmes@2002"; // Coloque a senha do banco aqui!
+    private final String user = "user"; // Coloque o usuário do banco aqui!
+    private final String password = "pass"; // Coloque a senha do banco aqui!
 
     private Connection conectar() throws SQLException {
         try {
@@ -42,7 +51,7 @@ public class InteracaoDAO {
     // 2. Busca todos os comentários de um filme específico
     public List<Avaliacao> listarAvaliacoes(int idMidia) {
         List<Avaliacao> avaliacoes = new ArrayList<>();
-        // MUDANÇA AQUI: Adicionei 'a.id' no SELECT para o botão do Admin saber qual comentário excluir
+        // Adicionei 'a.id' no SELECT para o botão do Admin saber qual comentário excluir
         String sql = "SELECT a.id, u.nome, a.nota, a.comentario, a.data_avaliacao FROM avaliacoes a JOIN usuarios u ON a.id_usuario = u.id WHERE a.id_midia = ? ORDER BY a.data_avaliacao DESC";
         
         try (Connection conn = conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -50,7 +59,7 @@ public class InteracaoDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Avaliacao av = new Avaliacao();
-                    // MUDANÇA AQUI: Setando o ID resgatado do banco
+                    // Setando o ID resgatado do banco
                     av.setId(rs.getInt("id")); 
                     av.setNomeUsuario(rs.getString("nome"));
                     av.setNota(rs.getInt("nota"));
@@ -149,7 +158,7 @@ public class InteracaoDAO {
     }
 
     // ==========================================
-    // 7. NOVO: Método para o Admin excluir uma avaliação
+    // 7. Método para o Admin excluir uma avaliação
     // ==========================================
     public void excluirAvaliacao(int idAvaliacao) {
         String sql = "DELETE FROM avaliacoes WHERE id = ?";

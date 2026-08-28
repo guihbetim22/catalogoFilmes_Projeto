@@ -1,3 +1,13 @@
+/**
+ * Controlador (Servlet) encarregado de gerenciar as requisições HTTP relacionadas ao catálogo de mídias.
+ * Intercepta as chamadas vindas do front-end (como formulários de cadastro ou edição de filmes),
+ * coordena a validação dos dados recebidos, aciona o ItemMidiaDAO para a devida persistência no banco 
+ * e gerencia o redirecionamento do fluxo de navegação do usuário para a view (JSP) apropriada.
+ * 
+ * @author Guilherme Mendes Betim
+ * @version 1.0
+ */
+
 package controller;
 
 import java.io.IOException;
@@ -11,6 +21,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.ItemMidia;
 
 @WebServlet("/filmes")
@@ -34,6 +45,10 @@ public class ItemMidiaServlet extends HttpServlet {
         if ("excluir".equals(acao)) {
             int id = Integer.parseInt(request.getParameter("id"));
             dao.excluir(id);
+            
+            // === TOAST DE EXCLUSÃO ===
+            request.getSession().setAttribute("mensagemToast", "Filme excluído do catálogo!");
+            
             response.sendRedirect("filmes");
             return;
         }
@@ -48,9 +63,25 @@ public class ItemMidiaServlet extends HttpServlet {
         else if (filtro != null && valorFiltro != null && !valorFiltro.trim().isEmpty()) {
             listaFilmes = dao.buscarPorFiltro(filtro, valorFiltro);
         } 
-        // Padrão: Catálogo Completo
+        // Padrão: Catálogo Completo (COM PAGINAÇÃO)
         else {
-            listaFilmes = dao.listarTodos();
+            int paginaAtual = 1; 
+            if (request.getParameter("pagina") != null) {
+                paginaAtual = Integer.parseInt(request.getParameter("pagina"));
+            }
+
+            int limite = 10; // Mostra 10 filmes por página
+            int offset = (paginaAtual - 1) * limite; 
+
+            listaFilmes = dao.listarComPaginacao(limite, offset);
+            
+            // Calcula o total de páginas
+            int totalFilmes = dao.contarTotalFilmes();
+            int totalPaginas = (int) Math.ceil((double) totalFilmes / limite);
+
+            // Envia para o JSP desenhar os botões 1, 2, 3...
+            request.setAttribute("paginaAtual", paginaAtual);
+            request.setAttribute("totalPaginas", totalPaginas);
         }
 
         // Enviamos o valor do filtro de volta para a tela para pintar o botão selecionado
@@ -68,6 +99,7 @@ public class ItemMidiaServlet extends HttpServlet {
         // O FiltroAutenticacao já bloqueou qualquer usuário que não seja ADMIN de chegar neste POST.
 
         String acao = request.getParameter("acao");
+        HttpSession session = request.getSession();
         
         // =======================================================
         // CENÁRIO 1: BUSCA AUTOMÁTICA PELA API DO TMDB
@@ -142,6 +174,9 @@ public class ItemMidiaServlet extends HttpServlet {
                     item.setAutorDiretor(diretor);
 
                     dao.inserir(item); 
+                    
+                    // === TOAST DE IMPORTAÇÃO TMDB ===
+                    session.setAttribute("mensagemToast", "Filme importado com sucesso!");
                 }
             } catch (JsonSyntaxException | IOException | InterruptedException | NumberFormatException e) {
                 e.printStackTrace();
@@ -184,6 +219,9 @@ public class ItemMidiaServlet extends HttpServlet {
         item.setPosterUrl(posterUrl != null && !posterUrl.isEmpty() ? posterUrl : null); 
 
         dao.inserir(item); 
+        
+        // === TOAST DE CADASTRO MANUAL ===
+        session.setAttribute("mensagemToast", "Filme cadastrado com sucesso!");
         
         response.sendRedirect("filmes");
     }
